@@ -1,0 +1,76 @@
+package com.example.lab4;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import android.os.Bundle;
+import android.view.ViewGroup;
+
+import java.util.ArrayList;
+
+public class MainActivity extends AppCompatActivity {
+    public class Foodie {
+
+        String fooodd; //variables that will hold the name of planet
+
+        int jap; //variable that will hold the image of planet
+
+        public Foodie(String planetName, int image) {
+            this.fooodd = planetName;
+            this.jap = image;
+        }
+
+        public String getPlanetName() {
+            return fooodd;
+        }
+
+        public int getImage() {
+            return jap;
+        }
+    }
+    ArrayList<Foodie> foodss = new ArrayList<>();
+    int[] foodimg = {R.drawable.sushi, R.drawable.ramen, R.drawable.tempura, R.drawable.teriyaki,
+            R.drawable.okonomiyaki, R.drawable.yakitori, R.drawable.udon, R.drawable.tonkatsu, R.drawable.miso,
+            R.drawable.donburi, R.drawable.takoyaki, R.drawable.gyoza, R.drawable.chawanmushi, R.drawable.onigiri,
+            R.drawable.shabu, R.drawable.soba, R.drawable.sashimi, R.drawable.oden, R.drawable.yakiniku,
+            R.drawable.mochi,};
+
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        RecyclerView recyclerView = findViewById(R.id.review);
+
+        mod(); //call the method
+
+
+    }
+
+
+
+    private void mod() {
+        //create model classes for each items
+        String[] plan = getResources().getStringArray(R.array.fud);
+
+        for (int i = 0; i < plan.length; i++) {
+            foodss.add(new Foodie(plan[i], foodimg[i]));
+
+        }
+
+    }
+
+    public RecyclerAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+//This is where you inflate the layout (Giving a look to our rows)
+
+        return null;
+
+
+    }
+
+
+    }
