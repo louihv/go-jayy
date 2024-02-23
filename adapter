@@ -1,0 +1,82 @@
+package com.example.lab4;
+
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.lab4.MainActivity.Foodie;
+
+import java.util.ArrayList;
+
+public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyViewHolder> implements Recyclerint {
+    private final Recyclerint recyclerViewInterface;
+
+    public class MyViewHolder extends RecyclerView.ViewHolder{
+        //grabbing the views from our recyclerview_row layout file
+        //Kinda like onCreate method in our Main Activity
+        ImageView img;
+        TextView txt;
+
+
+        public MyViewHolder(@NonNull View itemView, Recyclerint recyclerViewInterface) {
+            super(itemView);
+            img = itemView.findViewById(R.id.imgg);
+            txt = itemView.findViewById(R.id.textt);
+
+            itemView.setOnClickListener(view -> {
+                if (recyclerViewInterface != null) {
+                    int pos = getAdapterPosition();
+
+                    if (pos != RecyclerView.NO_POSITION) {
+                        recyclerViewInterface.onItemClick(pos);
+                    }
+                }
+            });
+
+        }
+        }
+
+    Context context;
+    ArrayList<Foodie> fooo;
+
+
+    public RecyclerAdapter(Context context, ArrayList<Foodie> foo, Recyclerint recyclerViewInterface) {
+        this.context = context;
+        this.fooo = foo;
+        this.recyclerViewInterface = recyclerViewInterface;
+
+    }
+
+        @Override
+    public void onBindViewHolder(@NonNull RecyclerAdapter.MyViewHolder holder, int position) {
+        //assigning values to the views we created in the recyclerview_row layout file
+        //based on the position of the recycler view
+        holder.txt.setText(fooo.get(position).getPlanetName());
+        holder.img.setImageResource(fooo.get(position).getImage());
+    }
+
+    @Override
+    public int getItemCount() {
+        return fooo. size();
+    }
+
+    @NonNull
+    @Override
+    public RecyclerAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        //This is where you inflate the layout (Giving a Look to our rows)
+        LayoutInflater inflater = LayoutInflater.from(context);
+        View view = inflater.inflate(R.layout.rec, parent, false);
+        return new RecyclerAdapter.MyViewHolder(view);
+
+    }
+    @Override
+    public void onItemClick(int position) {
+
+    }
+    }
